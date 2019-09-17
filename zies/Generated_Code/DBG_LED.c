@@ -7,7 +7,7 @@
 **     Version     : Component 01.033, Driver 01.03, CPU db: 3.00.000
 **     Repository  : Kinetis
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2019-06-20, 16:05, # CodeGen: 1
+**     Date/Time   : 2019-09-04, 15:49, # CodeGen: 7
 **     Abstract    :
 **         The HAL BitIO component provides a low level API for unified
 **         access to general purpose digital input/output pins across
@@ -17,7 +17,7 @@
 **         portable to various microprocessors.
 **     Settings    :
 **          Component name                                 : DBG_LED
-**          Pin for I/O                                    : J1_8
+**          Pin for I/O                                    : PTA1/UART0_RX/FTM0_CH6/JTAG_TDI/EZP_DI
 **          Direction                                      : Output
 **          Initialization                                 : 
 **            Init. direction                              : Output

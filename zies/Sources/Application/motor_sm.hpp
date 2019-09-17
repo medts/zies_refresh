@@ -91,7 +91,7 @@ class MotorSM : public StateMachine
 	public:
 		Error SM_Status;
 		MotorDrv8825 & Motor;
-		// MotorEncoder & Encoder;
+		MotorEncoder & Encoder;
 		MotorRegisters & HostRegs;
 		int32_t CurrentPosition;
 		const Time TimeoutDuration;

@@ -6,7 +6,7 @@
 **     Version     : Component 01.048, Driver 01.00, CPU db: 3.00.000
 **     Repository  : Kinetis
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2019-08-02, 14:44, # CodeGen: 6
+**     Date/Time   : 2019-09-04, 15:49, # CodeGen: 7
 **
 **     Copyright : 1997 - 2015 Freescale Semiconductor, Inc. 
 **     All Rights Reserved.
@@ -55,7 +55,6 @@
 #include "PE_Types.h"
 #include "PE_Error.h"
 #include "PE_Const.h"
-#include "pin_mux.h"
 #include "UART0.h"
 #include "ASerialLdd1.h"
 #include "Debug_UART1.h"

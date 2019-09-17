@@ -304,7 +304,7 @@ registers of the peripheral(s) configured by the component.
 \page DBG_LED_settings Component Settings
 \code
 **          Component name                                 : DBG_LED
-**          Pin for I/O                                    : J1_8
+**          Pin for I/O                                    : PTA1/UART0_RX/FTM0_CH6/JTAG_TDI/EZP_DI
 **          Direction                                      : Output
 **          Initialization                                 : 
 **            Init. direction                              : Output

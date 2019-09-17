@@ -49,7 +49,6 @@
 /* MODULE Vectors_Config.h */
   
 #include "Cpu.h"
-#include "pin_mux.h"
 #include "UART0.h"
 #include "ASerialLdd1.h"
 #include "Debug_UART1.h"
@@ -135,9 +134,9 @@ extern "C" {
 #define VECTOR_55         (tIsrFunc)&UnhandledInterrupt         /* 0x37 -    ivINT_ADC0                    unused by PE */
 #define VECTOR_56         (tIsrFunc)&UnhandledInterrupt         /* 0x38 -    ivINT_CMP0                    unused by PE */
 #define VECTOR_57         (tIsrFunc)&UnhandledInterrupt         /* 0x39 -    ivINT_CMP1                    unused by PE */
-#define VECTOR_58         (tIsrFunc)&FTM0_ISR                   /* 0x3A 0    ivINT_FTM0                    used by PE */
-#define VECTOR_59         (tIsrFunc)&FTM1_ISR                   /* 0x3B 128  ivINT_FTM1                    used by PE */
-#define VECTOR_60         (tIsrFunc)&FTM2_ISR                   /* 0x3C 128  ivINT_FTM2                    used by PE */
+#define VECTOR_58         (tIsrFunc)&UnhandledInterrupt         /* 0x3A -    ivINT_FTM0                    unused by PE */
+#define VECTOR_59         (tIsrFunc)&UnhandledInterrupt         /* 0x3B -    ivINT_FTM1                    unused by PE */
+#define VECTOR_60         (tIsrFunc)&UnhandledInterrupt         /* 0x3C -    ivINT_FTM2                    unused by PE */
 #define VECTOR_61         (tIsrFunc)&UnhandledInterrupt         /* 0x3D -    ivINT_Reserved61              unused by PE */
 #define VECTOR_62         (tIsrFunc)&UnhandledInterrupt         /* 0x3E -    ivINT_RTC                     unused by PE */
 #define VECTOR_63         (tIsrFunc)&UnhandledInterrupt         /* 0x3F -    ivINT_RTC_Seconds             unused by PE */
@@ -164,7 +163,7 @@ extern "C" {
 #define VECTOR_84         (tIsrFunc)&UnhandledInterrupt         /* 0x54 -    ivINT_Reserved84              unused by PE */
 #define VECTOR_85         (tIsrFunc)&UnhandledInterrupt         /* 0x55 -    ivINT_Reserved85              unused by PE */
 #define VECTOR_86         (tIsrFunc)&UnhandledInterrupt         /* 0x56 -    ivINT_Reserved86              unused by PE */
-#define VECTOR_87         (tIsrFunc)&FTM3_ISR                   /* 0x57 0    ivINT_FTM3                    used by PE */
+#define VECTOR_87         (tIsrFunc)&UnhandledInterrupt         /* 0x57 -    ivINT_FTM3                    unused by PE */
 #define VECTOR_88         (tIsrFunc)&UnhandledInterrupt         /* 0x58 -    ivINT_DAC1                    unused by PE */
 #define VECTOR_89         (tIsrFunc)&UnhandledInterrupt         /* 0x59 -    ivINT_ADC1                    unused by PE */
 #define VECTOR_90         (tIsrFunc)&UnhandledInterrupt         /* 0x5A -    ivINT_Reserved90              unused by PE */

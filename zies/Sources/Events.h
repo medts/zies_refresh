@@ -33,7 +33,6 @@
 #include "PE_Error.h"
 #include "PE_Const.h"
 #include "IO_Map.h"
-#include "pin_mux.h"
 #include "UART0.h"
 #include "ASerialLdd1.h"
 #include "Debug_UART1.h"
@@ -238,6 +237,41 @@ extern "C"
 	 */
 	/* ===================================================================*/
 	void Cpu_OnHardFault ( void );
+
+/*
+** ===================================================================
+**     Event       :  M1_PWM_OnEnd (module Events)
+**
+**     Component   :  M1_PWM [PWM]
+**     Description :
+**         This event is called when the specified number of cycles has
+**         been generated. (Only when the component is enabled -
+**         <Enable> and the events are enabled - <EnableEvent>). The
+**         event is available only when the <Interrupt service/event>
+**         property is enabled and selected peripheral supports
+**         appropriate interrupt.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+
+/*
+** ===================================================================
+**     Event       :  M1_PWM_OnEnd (module Events)
+**
+**     Component   :  M1_PWM [PWM]
+**     Description :
+**         This event is called when the specified number of cycles has
+**         been generated. (Only when the component is enabled -
+**         <Enable> and the events are enabled - <EnableEvent>). The
+**         event is available only when the <Interrupt service/event>
+**         property is enabled and selected peripheral supports
+**         appropriate interrupt.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+void M1_PWM_OnEnd(void);
 
 /* END Events */
 

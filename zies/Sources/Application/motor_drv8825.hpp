@@ -1,10 +1,16 @@
 #ifndef MOTOR_DRV8825_HPP_
 #define MOTOR_DRV8825_HPP_
 
-//#include "motor_encoder.hpp"
+#include "motor_encoder.hpp"
 #include "state_machine.hpp"
 #include "registers.hpp"
 #include "time.hpp"
+
+typedef void (*Step_Func) (uint32_t, float);
+typedef void (*Direction_Func) (bool);
+typedef void (*DrvEnable_Func) (bool);
+typedef bool (*IsFault_Func) (void);
+typedef bool (*IsSteppingDone_Func) (void);
 
 // =================================================================
 typedef float MotorPosition;
@@ -13,7 +19,6 @@ inline MotorDirection OppositeDirection ( MotorDirection theDir )
 {
 	return (theDir == Reverse ? Forward : Reverse);
 }
-
 // =================================================================
 class MotorDrv8825
 {
@@ -28,13 +33,19 @@ class MotorDrv8825
 		uint32_t Deadband;
 		uint32_t MaxMoveRetries;
 		bool InvertedDirection;
-		BooleanFunc DeviceIsBusy;
-//		MotorEncoder & Encoder;
+		Step_Func StepFunc;
+		Direction_Func DirFunc;
+		DrvEnable_Func DrvEnabFunc;
+		IsFault_Func IsFault;
+		IsSteppingDone_Func IsSteppingDone;
+		MotorEncoder & Encoder;
 		MotorDirection HomeDirection;
 		bool MotorIsRunning;
 		TimeoutTimer DelayTimer;
 
-		MotorDrv8825 ( const char * theName, uint8_t theUserNum, BooleanFunc theIsBusyFunc );
+		MotorDrv8825 ( const char * theName, uint8_t theUserNum,
+				Step_Func theStepFunc, Direction_Func theDirFunc, DrvEnable_Func theEnableFunc,
+				IsFault_Func theIsFaultFunc, IsSteppingDone_Func theIsSteppingDone, MotorEncoder & theEncoder);
 		void SetParameters ( const MotorRegisters & theHostRegs );
 		Error Initialize ( const TimeoutTimer & theTimer );
 		Error MoveTo ( int32_t thePosition, const TimeoutTimer & theTimer );
@@ -61,7 +72,7 @@ class MotorDrv8825
 		int32_t OrigPosition;
 		uint32_t Retries;
 
-		Error move (uint32_t theAmount, MotorDirection theDirection, const TimeoutTimer & theTimer);
+		Error move (int32_t theDistance, MotorDirection theDirection, const TimeoutTimer & theTimer);
 		Error run (uint32_t theSpeed, MotorDirection theDirection, const TimeoutTimer & theTimer);
 		Error CheckStatus (const TimeoutTimer & theTimer);
 		Error TimeoutCheck (const TimeoutTimer & theTimer);

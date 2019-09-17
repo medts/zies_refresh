@@ -7,7 +7,7 @@
 **     Version     : Component 02.611, Driver 01.01, CPU db: 3.00.000
 **     Repository  : Kinetis
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2019-08-02, 14:44, # CodeGen: 6
+**     Date/Time   : 2019-09-04, 15:49, # CodeGen: 7
 **     Abstract    :
 **         This component "AsynchroSerial" implements an asynchronous serial
 **         communication. The component supports different settings of
@@ -35,9 +35,9 @@
 **            Width                                        : 8 bits
 **            Stop bit                                     : 1
 **            Receiver                                     : Enabled
-**              RxD                                        : SD_CARD_DAT0
+**              RxD                                        : ADC1_SE5a/PTE1/LLWU_P0/SPI1_SOUT/UART1_RX/I2C1_SCL/SPI1_SIN
 **            Transmitter                                  : Enabled
-**              TxD                                        : SD_CARD_DAT1
+**              TxD                                        : ADC1_SE4a/PTE0/CLKOUT32K/SPI1_PCS1/UART1_TX/I2C1_SDA/RTC_CLKOUT
 **            Baud rate                                    : 115200 baud
 **            Break signal                                 : Enabled
 **            Wakeup condition                             : Idle line wakeup

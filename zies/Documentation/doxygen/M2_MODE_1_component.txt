@@ -37,7 +37,7 @@ by the component.
 <td class="regNotResetVal">0x00000100</td>
  <td>PORTC_PCR9 register, peripheral M2_MODE_1.</td></tr>
 <tr><td>0x4004B028</td><td>PORTC_PCR10</td>
-<td class="regNotResetVal">0x00000120</td>
+<td class="regNotResetVal">0x00000100</td>
  <td>PORTC_PCR10 register, peripheral M2_MODE_1.</td></tr>
 </table>
 Color Denotes Reset Value
@@ -409,7 +409,7 @@ registers of the peripheral(s) configured by the component.
         
 </div>
 <table class="regtbl2"><tr><td class="trowtit" colspan="2">Address</td><td colspan="2">0x4004B028</td></tr>
-<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00000120</td></tr>
+<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00000100</td></tr>
 <tr class="trowtit"><td  class="trowtit" colspan="2">After-reset value</td><td colspan="2">0x00000000</td></tr>
 <tr><td class="ttitle2">Bit</td><td class="ttitle2">Field</td><td class="ttitle2">Value</td><td class="ttitle2">Description</td></tr>
 <tr><td>24</td><td>ISF</td><td>0x00</td><td>Interrupt Status Flag</td>
@@ -417,7 +417,7 @@ registers of the peripheral(s) configured by the component.
 <tr><td>15</td><td>LK</td><td>0x00</td><td>Lock Register</td>
 <tr><td>8 - 10</td><td>MUX</td><td>0x00</td><td>Pin Mux Control</td>
 <tr><td>6</td><td>DSE</td><td>0x00</td><td>Drive Strength Enable</td>
-<tr><td>5</td><td>ODE</td><td>0x01</td><td>Open Drain Enable</td>
+<tr><td>5</td><td>ODE</td><td>0x00</td><td>Open Drain Enable</td>
 <tr><td>4</td><td>PFE</td><td>0x00</td><td>Passive Filter Enable</td>
 <tr><td>2</td><td>SRE</td><td>0x00</td><td>Slew Rate Enable</td>
 <tr><td>1</td><td>PE</td><td>0x00</td><td>Pull Enable</td>
@@ -428,7 +428,7 @@ registers of the peripheral(s) configured by the component.
 \page M2_MODE_1_settings Component Settings
 \code
 **          Component name                                 : M2_MODE_1
-**          Pin for I/O                                    : J26_10
+**          Pin for I/O                                    : ADC1_SE6b/PTC10/I2C1_SCL/FTM3_CH6/I2S0_RX_FS/FBa_AD5
 **          Direction                                      : Output
 **          Initialization                                 : 
 **            Init. direction                              : Output

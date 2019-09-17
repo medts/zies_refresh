@@ -6,7 +6,7 @@
 **     Version     : Component 01.048, Driver 01.00, CPU db: 3.00.000
 **     Repository  : Kinetis
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2019-08-02, 14:44, # CodeGen: 6
+**     Date/Time   : 2019-09-17, 11:03, # CodeGen: 8
 **
 **     Copyright : 1997 - 2015 Freescale Semiconductor, Inc. 
 **     All Rights Reserved.

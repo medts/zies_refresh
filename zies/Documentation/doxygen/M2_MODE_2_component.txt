@@ -304,7 +304,7 @@ registers of the peripheral(s) configured by the component.
 \page M2_MODE_2_settings Component Settings
 \code
 **          Component name                                 : M2_MODE_2
-**          Pin for I/O                                    : RMII0_MDIO
+**          Pin for I/O                                    : ADC0_SE8/ADC1_SE8/PTB0/LLWU_P5/I2C0_SCL/FTM1_CH0/FTM1_QD_PHA
 **          Direction                                      : Output
 **          Initialization                                 : 
 **            Init. direction                              : Output

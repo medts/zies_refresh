@@ -14,6 +14,5 @@ class MotorSM_Motor1 : public MotorSM
 };
 // =================================================================
 extern MotorSM_Motor1 gSM_Motor1;
-extern bool Motor1IsHome ();
 
 #endif /* MOTOR1_HPP_ */

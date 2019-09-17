@@ -26,6 +26,7 @@ MotorSM::MotorSM ( const char * theName, int theId, MotorDrv8825 & theMotor, Mot
 		SM_Status(0),
 		TimeoutDuration(theTimeout),
 		Motor(theMotor),
+		Encoder(theMotor.Encoder),
 		HostRegs(theHostRegs),
 		IsHome(theIsHomeFunc),
 		IsMaxTravel(theIsMaxTravelFunc),
@@ -40,12 +41,12 @@ void MotorSM::MarkPositionAsZero ()
 {
 	CurrentPosition = 0;
 	HostRegs.Position = CurrentPosition;
+	Encoder.MarkPositionAsZero();
 }
 // =================================================================
 int32_t MotorSM::GetCurrentPosition()
 {
-	HostRegs.Position = CurrentPosition;
-	return CurrentPosition;
+	return Encoder.CurrentPosition();
 }
 // =================================================================
 bool MotorSM::StopRequested ( SM_Msg & theOrigMsg )
@@ -75,12 +76,12 @@ SM_POLL (MotorSM_PowerUpDelay)  // wait for power to motor controllers. Prevent 
 {
 	if (!sm.Timer.IsTimedOut()) return 0;
 	sm.Timer.Start(Time(1000.0));  // 1 sec
-	sm.SM_Status = static_cast<Error>(SM_Busy);
 	return &MotorSM_Initialize;
 }
 // =================================================================
 SM_POLL (MotorSM_Initialize)
 {
+	sm.Encoder.SetConversionFactors(sm.HostRegs);
 	sm.Motor.SetParameters (sm.HostRegs);
 	sm.SM_Status = sm.Motor.Initialize(sm.Timer);
 	if (sm.SM_Status == static_cast<Error>(SM_Busy)) return 0;
@@ -273,7 +274,7 @@ SM_POLL (MotorSM_Move)
 		sm.Motor.AbortOperation();
 		return &MotorSM_Stop;
 	}
-	sm.SM_Status = sm.Motor.MoveTo(sm.SMM_MoveTo.Param1, sm.Timer);
+	sm.SM_Status = sm.Motor.MoveTo(lrintf (sm.Encoder.UserToEncoder * (float) sm.SMM_MoveTo.Param1), sm.Timer);
 	if (sm.SM_Status == static_cast<Error>(SM_Busy))
 		return 0;
 	sm.HostRegs.Position = sm.GetCurrentPosition();

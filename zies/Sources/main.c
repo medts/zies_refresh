@@ -29,7 +29,6 @@
 /* Including needed modules to compile this module/procedure */
 #include "Cpu.h"
 #include "Events.h"
-#include "pin_mux.h"
 #include "UART0.h"
 #include "ASerialLdd1.h"
 #include "Debug_UART1.h"

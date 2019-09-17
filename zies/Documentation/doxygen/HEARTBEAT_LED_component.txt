@@ -242,7 +242,7 @@ registers of the peripheral(s) configured by the component.
 \page HEARTBEAT_LED_settings Component Settings
 \code
 **          Component name                                 : HEARTBEAT_LED
-**          Pin for I/O                                    : J1_12
+**          Pin for I/O                                    : PTA2/UART0_TX/FTM0_CH7/JTAG_TDO/TRACE_SWO/EZP_DO
 **          Direction                                      : Output
 **          Initialization                                 : 
 **            Init. direction                              : Output

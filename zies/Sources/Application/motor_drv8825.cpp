@@ -8,10 +8,17 @@ extern "C"
 }
 
 // =================================================================
-MotorDrv8825::MotorDrv8825 ( const char * theName, uint8_t theUserNum, BooleanFunc theIsBusyFunc) :
+MotorDrv8825::MotorDrv8825 ( const char * theName, uint8_t theUserNum,
+		Step_Func theStepFunc, Direction_Func theDirFunc, DrvEnable_Func theEnableFunc,
+		IsFault_Func theIsFaultFunc, IsSteppingDone_Func theIsSteppingDone, MotorEncoder & theEncoder) :
 		UserNum(theUserNum),
 		UserName(theName),
-		DeviceIsBusy(theIsBusyFunc),
+		StepFunc(theStepFunc),
+		DirFunc(theDirFunc),
+		DrvEnabFunc(theEnableFunc),
+		IsFault(theIsFaultFunc),
+		IsSteppingDone(theIsSteppingDone),
+		Encoder(theEncoder),
 		MotorIsRunning(false),
 		Retries(0),
 		MinSpeed(0),
@@ -47,6 +54,14 @@ Error MotorDrv8825::ErrorCheck ( Error theError, const TimeoutTimer & theTimer )
 		StateNum = 0;
 		return UserNum | static_cast<Error>(TimeoutError_MotorDrv8825);
 	}
+
+	if (IsFault())
+	{
+		theError = HwError_MotorDriverError;
+		Retries = 0;
+		StateNum = 0;
+		return theError;
+	}
 	if (theError == static_cast<Error>(SM_Busy))
 		return static_cast<Error>(SM_Busy);
 	if (theError)
@@ -62,8 +77,8 @@ Error MotorDrv8825::ErrorCheck ( Error theError, const TimeoutTimer & theTimer )
 // =================================================================
 void MotorDrv8825::SetParameters ( const MotorRegisters & theHostRegs )
 {
-	StepSize = min((uint8_t) log2(theHostRegs.StepSize), (uint8_t) 4) | 8;  // 0=full, 1=half, ... 6=1/64, 7=1/128
-	UserToMotor = (float) theHostRegs.GearheadRatio * (float) theHostRegs.MotorFullStepsPerRev / (float) theHostRegs.UnitsPerRev;
+	StepSize = theHostRegs.StepSize;
+	UserToMotor = (float) theHostRegs.GearheadRatio * (float) theHostRegs.MotorFullStepsPerRev * StepSize/ (float) theHostRegs.UnitsPerRev;
 	MotorToUser = 1.0 / UserToMotor;
 	Deadband = theHostRegs.Deadband;
 	MaxMoveRetries = theHostRegs.MaxMoveRetries;
@@ -105,9 +120,6 @@ Error MotorDrv8825::Initialize ( const TimeoutTimer & theTimer )
 			else
 				error = static_cast<Error>(SM_Busy);
 			break;
-		case 2:
-			break;
-
 		default:  // all states completed
 			StateNum = 0;
 			return static_cast<Error>(NoError);
@@ -163,7 +175,35 @@ Error MotorDrv8825::FindMaxTravel ( BooleanFunc theIsMaxTravelFunc, const Timeou
 // =================================================================
 Error MotorDrv8825::MoveTo ( int32_t thePosition, const TimeoutTimer & theTimer )  // encoder position in ticks
 {
+	int32_t distance;
+	MotorDirection dir;
 	Error error = static_cast<Error>(NoError);  // a faulty home sensor will cause a TimeoutError
+
+	switch(StateNum)
+	{
+	  case 1:
+		distance = thePosition - Encoder.CurrentPosition();
+	    dir = (distance < 0) ? Reverse : Forward;
+	    break;
+
+	  case 2:
+	    move(distance, dir, theTimer);
+	    break;
+
+	  case 3:
+	    if(!IsSteppingDone())
+	    	error = static_cast<Error>(SM_Busy);
+	    break;
+
+	  case 4:
+	    Encoder.MotorMoved(UserToMotor*distance, dir);
+	    break;
+
+	  default:
+		StateNum = 0;
+		return static_cast<Error>(NoError);
+	}
+
 	return ErrorCheck(error, theTimer);
 }
 // =================================================================
@@ -176,11 +216,21 @@ Error MotorDrv8825::Stop ( bool theSoftStop, const TimeoutTimer & theTimer )
 Error MotorDrv8825::HoldEnable ( bool theDoEnable, const TimeoutTimer & theTimer )
 {
 	Error error = static_cast<Error>(NoError);  // a faulty home sensor will cause a TimeoutError
+	DrvEnabFunc(theDoEnable);
 	return ErrorCheck(error, theTimer);
 }
 // =================================================================
-Error MotorDrv8825::move ( uint32_t theAmount, MotorDirection theDirection, const TimeoutTimer & theTimer ) // num motor steps
+Error MotorDrv8825::move ( int32_t theDistance, MotorDirection theDirection, const TimeoutTimer & theTimer ) // num motor steps
 {
+	uint32_t num_of_pulses;
+	uint32_t frequency;
+
+	num_of_pulses = theDistance * static_cast<uint32_t>(UserToMotor); //converting mm to pulses
+	frequency = MaxSpeed * static_cast<uint32_t>(UserToMotor); //converting speed in mm/sec to frequency in pulses / sec
+
+	DrvEnabFunc(true);
+	StepFunc(num_of_pulses, frequency);
+	DirFunc(theDirection);
 	return NoError;
 }
 // =================================================================

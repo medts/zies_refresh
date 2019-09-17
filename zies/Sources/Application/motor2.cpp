@@ -1,55 +1,53 @@
-#include "motor1.hpp"
-#include "motor_encoder.hpp"
-
+#include "motor2.hpp"
 extern "C"
 {
-#include "M1_HOME.h"
-#include "M1_DIR.h"
-#include "M1_nFAULT.h"
-//#include "M1_ENB.h"
+#include "M2_HOME.h"
+#include "M2_DIR.h"
+#include "M2_nFAULT.h"
+//#include "M2_ENB.h"
 #include "pwm_drv.h"
 } // end extern "C"
-
 // =================================================================
-bool Motor1_IsHome ()
+bool Motor2_IsHome ()
 {
-	return M1_HOME_GetVal(0);	// true = sensor is active
+	return M2_HOME_GetVal(0);	// true = sensor is active
 }
-void Motor1_SetDirection ( bool theDirection )
+void Motor2_SetDirection ( bool theDirection )
 {
 	if (theDirection == Forward)
-		M1_DIR_PutVal(NULL, 1);
+		M2_DIR_PutVal(NULL, 1);
 	else
-		M1_DIR_PutVal(NULL, 0);
+		M2_DIR_PutVal(NULL, 0);
 }
 
-void Motor1_Enable ( bool theEnable )
+void Motor2_Enable ( bool theEnable )
 {
 //	if (theEnable == EnableMotor)
-//		M1_ENB_PutVal(NULL, 1);
+//		M2_ENB_PutVal(NULL, 1);
 //	else
-//		M1_ENB_PutVal(NULL, 0);
+//		M2_ENB_PutVal(NULL, 0);
 }
 
-bool Motor1_IsFault (void)
+bool Motor2_IsFault ()
 {
-	return !M1_nFAULT_GetVal(0); //If low M1 is at fault
+	return !M2_nFAULT_GetVal(0); //If low M2 is at fault
 }
 
-bool Motor1_IsSteppingDone(void)
+bool Motor2_IsSteppingDone()
 {
-	return FTM0_IsSteppingDone();
+	return FTM3_IsSteppingDone();
 }
 
-MotorDrv8825 Motor1("XAxis", static_cast<uint8_t>(X_AXIS_MOTOR),
-		FTM0_SendSteps, Motor1_SetDirection, Motor1_Enable, Motor1_IsFault, Motor1_IsSteppingDone, gMotor1Encoder);
-MotorSM_Motor1 gSM_Motor1(Motor1, (MotorRegisters&) gRegisters[Motor1Regs], Motor1_IsHome, 0, 10000.0);
+
+MotorDrv8825 Motor2("YAxis", static_cast<uint8_t>(X_AXIS_MOTOR),
+		FTM3_SendSteps, Motor2_SetDirection, Motor2_Enable, Motor2_IsFault, Motor2_IsSteppingDone, gMotor2Encoder);
+MotorSM_Motor2 gSM_Motor2(Motor2, (MotorRegisters&) gRegisters[Motor2Regs], Motor2_IsHome, 0, 10000.0);
 
 // =================================================================
 // Setup default values for the motor, these can be altered by the host through registers write
-void MotorSM_Motor1::PowerUp ()
+void MotorSM_Motor2::PowerUp ()
 {
-	HostRegs.HomeDirection = static_cast<uint32_t>(Reverse);
+	HostRegs.HomeDirection = static_cast<uint32_t>(Forward);
 	HostRegs.InvertedDirection = 0;
 	HostRegs.MotorFullStepsPerRev = 200;
 	HostRegs.EncoderTicksPerRev = 200;
@@ -63,6 +61,6 @@ void MotorSM_Motor1::PowerUp ()
 	HostRegs.MinSpeed = 0; // in mm/sec
 	HostRegs.MaxSpeed = 1000; // in mm/sec
 
-	M1SetMode(static_cast<DrvStepSize>(HostRegs.StepSize));
+	M2SetMode(static_cast<DrvStepSize>(HostRegs.StepSize));
 }
 // =================================================================

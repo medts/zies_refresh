@@ -7,7 +7,7 @@
 **     Version     : Component 01.033, Driver 01.03, CPU db: 3.00.000
 **     Repository  : Kinetis
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2019-06-20, 16:05, # CodeGen: 1
+**     Date/Time   : 2019-09-04, 15:49, # CodeGen: 7
 **     Abstract    :
 **         The HAL BitIO component provides a low level API for unified
 **         access to general purpose digital input/output pins across
@@ -17,7 +17,7 @@
 **         portable to various microprocessors.
 **     Settings    :
 **          Component name                                 : M1_MODE_0
-**          Pin for I/O                                    : FXOS8700CQ_INT1/BUTTON_SW3
+**          Pin for I/O                                    : CMP0_IN1/PTC7/SPI0_SIN/USB_SOF_OUT/I2S0_RX_FS/FBa_AD8
 **          Direction                                      : Output
 **          Initialization                                 : 
 **            Init. direction                              : Output
@@ -99,7 +99,7 @@ extern "C" {
 
 
 /*! Peripheral base address of a device allocated by the component. This constant can be used directly in PDD macros. */
-#define M1_MODE_0_PRPH_BASE_ADDRESS  0x400FF000U
+#define M1_MODE_0_PRPH_BASE_ADDRESS  0x400FF080U
   
 /*! Device data structure pointer used when auto initialization property is enabled. This constant can be passed as a first parameter to all component's methods. */
 #define M1_MODE_0_DeviceData  ((LDD_TDeviceData *)PE_LDD_GetDeviceStructure(PE_LDD_COMPONENT_M1_MODE_0_ID))
@@ -110,9 +110,9 @@ extern "C" {
 #define M1_MODE_0_PutVal_METHOD_ENABLED /*!< PutVal method of the component M1_MODE_0 is enabled (generated) */
 
 /* Definition of implementation constants */
-#define M1_MODE_0_MODULE_BASE_ADDRESS PTA_BASE_PTR /*!< Name of macro used as the base address */
-#define M1_MODE_0_PORTCONTROL_BASE_ADDRESS PORTA_BASE_PTR /*!< Name of macro used as the base address */
-#define M1_MODE_0_PORT_MASK 0x10U      /*!< Mask of the allocated pin from the port */
+#define M1_MODE_0_MODULE_BASE_ADDRESS PTC_BASE_PTR /*!< Name of macro used as the base address */
+#define M1_MODE_0_PORTCONTROL_BASE_ADDRESS PORTC_BASE_PTR /*!< Name of macro used as the base address */
+#define M1_MODE_0_PORT_MASK 0x80U      /*!< Mask of the allocated pin from the port */
 
 
 

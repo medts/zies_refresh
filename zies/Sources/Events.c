@@ -31,6 +31,7 @@
 #include "Init_Config.h"
 #include "PDD_Includes.h"
 
+
 #ifdef __cplusplus
 extern "C"
 {
@@ -252,6 +253,45 @@ void Cpu_OnHardFault ( void )
 	/* Write your code here ... */
 }
 
+/*
+** ===================================================================
+**     Event       :  M1_PWM_OnEnd (module Events)
+**
+**     Component   :  M1_PWM [PWM]
+**     Description :
+**         This event is called when the specified number of cycles has
+**         been generated. (Only when the component is enabled -
+**         <Enable> and the events are enabled - <EnableEvent>). The
+**         event is available only when the <Interrupt service/event>
+**         property is enabled and selected peripheral supports
+**         appropriate interrupt.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+
+
+/*
+** ===================================================================
+**     Event       :  M1_PWM_OnEnd (module Events)
+**
+**     Component   :  M1_PWM [PWM]
+**     Description :
+**         This event is called when the specified number of cycles has
+**         been generated. (Only when the component is enabled -
+**         <Enable> and the events are enabled - <EnableEvent>). The
+**         event is available only when the <Interrupt service/event>
+**         property is enabled and selected peripheral supports
+**         appropriate interrupt.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+void M1_PWM_OnEnd(void)
+{
+  /* Write your code here ... */
+}
+
 /* END Events */
 
 #ifdef __cplusplus
@@ -259,25 +299,9 @@ void Cpu_OnHardFault ( void )
 #endif 
 
 /* ===================================================================*/
-PE_ISR(FTM0_ISR)
-{
 
-}
 
-PE_ISR(FTM1_ISR)
-{
 
-}
-
-PE_ISR(FTM2_ISR)
-{
-
-}
-
-PE_ISR(FTM3_ISR)
-{
-
-}
 
 /* ===================================================================*/
 /*!

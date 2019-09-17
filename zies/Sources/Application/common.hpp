@@ -214,6 +214,7 @@ enum ErrorCodes
 	SM_Busy = 0x00010000,
 	HwError = 0x00020000,
 		HwError_SerialCommController = HwError | 0x0001, // SerialComm hardware error
+		HwError_MotorDriverError = HwError | 0x0002, // Motor driver hardware error
 	TimeoutError = 0x00040000,
 		TimeoutError_HostComm = TimeoutError | 0x0001, // Host comm packet didn't complete, timeout error
 		TimeoutError_HostCRC = TimeoutError | 0x0002, // Host comm CRC not received completely

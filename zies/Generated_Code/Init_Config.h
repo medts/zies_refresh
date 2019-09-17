@@ -8,7 +8,7 @@
 **     Repository  : Kinetis
 **     Datasheet   : K22P121M120SF7RM, Rev. 1, March 24, 2014
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2019-06-20, 16:05, # CodeGen: 1
+**     Date/Time   : 2019-09-17, 11:03, # CodeGen: 8
 **     Abstract    :
 **         This file collects Processor Expert components configuration 
 **         and interface files.
@@ -30,9 +30,9 @@
 **              System oscillator 0                        : Enabled
 **                Clock source                             : External crystal
 **                  Clock input pin                        : 
-**                    Pin name                             : RMII_RXCLK
+**                    Pin name                             : EXTAL0/PTA18/FTM0_FLT2/FTM_CLKIN0
 **                  Clock output pin                       : 
-**                    Pin name                             : XTAL_K64_MAIN
+**                    Pin name                             : XTAL0/PTA19/FTM1_FLT0/FTM_CLKIN1/LPTMR0_ALT1
 **                  Clock frequency [MHz]                  : 8
 **                  Capacitor load                         : 0pF
 **                  Oscillator operating mode              : Low power
@@ -359,9 +359,9 @@
 **              JTAG Mode                                  : cJTAG/SWD
 **                TDO                                      : Disabled
 **                TCK                                      : Enabled
-**                  TCK Pin                                : J2_2/J11_1
+**                  TCK Pin                                : PTA0/UART0_CTS_b/FTM0_CH5/JTAG_TCLK/SWD_CLK/EZP_CLK
 **                TMS                                      : Enabled
-**                  TMS Pin                                : J9_2/SWD_DIO_TGTMCU/J12_2
+**                  TMS Pin                                : PTA3/UART0_RTS_b/FTM0_CH0/JTAG_TMS/SWD_DIO
 **            Flash memory organization                    : 
 **              Flash blocks                               : 2
 **                Flash block 0                            : PFlash
@@ -497,37 +497,6 @@
 /* Processor configuration file */
 #include "CPU_Config.h"
 
-/* PinSettings component header file */
-#include "pin_mux.h"
-  
-/* Initialization component configuration header file */
-#include "FTM1_Config.h"
-/* Initialization component static header file */
-#include "FTM1_Init.h"
-/* Initialization component generated header file */
-#include "M1_FTM1_QD1.h"
-  
-/* Initialization component configuration header file */
-#include "FTM2_Config.h"
-/* Initialization component static header file */
-#include "FTM2_Init.h"
-/* Initialization component generated header file */
-#include "M2_FTM2_QD2.h"
-  
-/* Initialization component configuration header file */
-#include "FTM0_Config.h"
-/* Initialization component static header file */
-#include "FTM0_Init.h"
-/* Initialization component generated header file */
-#include "M1_FTM0_PWM1.h"
-  
-/* Initialization component configuration header file */
-#include "FTM3_Config.h"
-/* Initialization component static header file */
-#include "FTM3_Init.h"
-/* Initialization component generated header file */
-#include "M2_FTM3_PWM2.h"
-  
 /* Initialization component configuration header file */
 #include "SysTick_Config.h"
 /* Initialization component static header file */

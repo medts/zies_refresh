@@ -50,6 +50,8 @@
 #include "PE_Types.h"
 #include "Init_Config.h"
 #include "Vectors_Config.h"
+#include "Events.h"
+#include "pwm_drv.h"
 
 #if PEX_VECTOR_TABLE /* Is Vector table handled by Processor Expert? */
   
@@ -918,10 +920,10 @@ PE_ISR(Unhandled_ivINT_CMP1)
 **         This method is internal. It is used by Processor Expert only.
 ** ===================================================================
 */
-PE_ISR(Unhandled_ivINT_FTM0);
-PE_ISR(Unhandled_ivINT_FTM0)
+PE_ISR(FTM0_ISR);
+PE_ISR(FTM0_ISR)
 {
-  PE_DEBUGHALT();
+  FTM0_Interrupt();
 }
 
 /*
@@ -1353,10 +1355,10 @@ PE_ISR(Unhandled_ivINT_Reserved86)
 **         This method is internal. It is used by Processor Expert only.
 ** ===================================================================
 */
-PE_ISR(Unhandled_ivINT_FTM3);
-PE_ISR(Unhandled_ivINT_FTM3)
+PE_ISR(FTM3_ISR);
+PE_ISR(FTM3_ISR)
 {
-  PE_DEBUGHALT();
+  FTM3_Interrupt();
 }
 
 /*

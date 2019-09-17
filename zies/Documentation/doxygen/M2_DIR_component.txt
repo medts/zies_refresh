@@ -242,7 +242,7 @@ registers of the peripheral(s) configured by the component.
 \page M2_DIR_settings Component Settings
 \code
 **          Component name                                 : M2_DIR
-**          Pin for I/O                                    : RMII0_MDC
+**          Pin for I/O                                    : ADC0_SE9/ADC1_SE9/PTB1/I2C0_SDA/FTM1_CH1/FTM1_QD_PHB
 **          Direction                                      : Output
 **          Initialization                                 : 
 **            Init. direction                              : Output

@@ -49,6 +49,12 @@ enum MotorDirection
 	Forward = 1
 };
 
+enum MotorEnabling
+{
+	DisableMotor = 0,
+	EnableMotor = 1
+};
+
 typedef struct MotorRegisters_type
 {
 	int32_t Command; // MotorCommands
@@ -72,8 +78,8 @@ typedef struct MotorRegisters_type
 	uint32_t DeAcceleration;
 	uint32_t MaxSpeed;
 	uint32_t MinSpeed;
-
-	uint32_t unused2[4]; //  reserved for future use
+	uint32_t EncoderTicksPerRev;
+	uint32_t unused2[3]; //  reserved for future use
 
 	uint32_t MaxMoveRetries;
 	uint32_t MinMaxTravelPosition; // axis limit in encoder ticks

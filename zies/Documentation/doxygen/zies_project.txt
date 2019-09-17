@@ -26,10 +26,6 @@
 <br/>
 
 \page page_components Components 
-- \subpage M1_FTM1_QD1
-- \subpage M2_FTM2_QD2
-- \subpage M1_FTM0_PWM1
-- \subpage M2_FTM3_PWM2
 - \subpage SysTick
 - \subpage ASerialLdd1
 - \subpage ASerialLdd2
@@ -79,10 +75,6 @@
 <br/>
 
 \page page_components Components 
-- \subpage M1_FTM1_QD1
-- \subpage M2_FTM2_QD2
-- \subpage M1_FTM0_PWM1
-- \subpage M2_FTM3_PWM2
 - \subpage SysTick
 - \subpage ASerialLdd1
 - \subpage ASerialLdd2

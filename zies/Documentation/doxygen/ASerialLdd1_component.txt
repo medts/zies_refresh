@@ -615,9 +615,9 @@ registers of the peripheral(s) configured by the component.
 **            Receiver input                               : Not inverted
 **            Break generation length                      : 10/11 bits
 **            Receiver                                     : Enabled
-**              RxD                                        : J6_6
+**              RxD                                        : ADC0_SE7b/PTD6/LLWU_P15/SPI0_PCS3/UART0_RX/FTM0_CH6/FBa_AD0/FTM0_FLT0/SPI1_SOUT
 **            Transmitter                                  : Enabled
-**              TxD                                        : J6_7
+**              TxD                                        : PTD7/UART0_TX/FTM0_CH7/FTM0_FLT1/SPI1_SIN
 **            Flow control                                 : None
 **          Initialization                                 : 
 **            Enabled in init. code                        : no

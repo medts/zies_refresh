@@ -366,7 +366,7 @@ registers of the peripheral(s) configured by the component.
 \page M2_MODE_0_settings Component Settings
 \code
 **          Component name                                 : M2_MODE_0
-**          Pin for I/O                                    : J1_9
+**          Pin for I/O                                    : ADC1_SE5b/CMP0_IN3/PTC9/FTM3_CH5/I2S0_RX_BCLK/FBa_AD6/FTM2_FLT0
 **          Direction                                      : Output
 **          Initialization                                 : 
 **            Init. direction                              : Output

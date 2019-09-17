@@ -11,6 +11,9 @@
 #include <cctype>
 #include <limits.h>
 
+#include "motor1.hpp"
+#include "motor2.hpp"
+
 extern "C"
 {
 #include "Debug_UART1.h"
@@ -30,6 +33,9 @@ SM_STATE(Debug_PromptStringPoll)
 SM_STATE(Debug_WaitForReadHostIndex)
 SM_STATE(Debug_WaitForWriteHostIndex)
 SM_STATE(Debug_WaitForWriteHostValue)
+SM_STATE(Debug_PromptMotorCommand)
+SM_STATE(Debug_PromptMotorMove)
+SM_STATE(Debug_PromptMotorMoveRel)
 
 StateMachine gSM_Debug("Debug", &Debug_PowerUp, 0, 0);
 
@@ -42,6 +48,9 @@ SM_Msg * DebugCommandMsg;
 int32_t DebugParam1;  // general purpose, SM var
 int32_t DebugParam2;  // general purpose, SM var
 int DebugDeviceIndex;
+
+MotorSM * DebugMotorSMs[] = { &gSM_Motor1, &gSM_Motor2 };
+
 
 // DebugPromptFor:
 int32_t DebugPromptInteger;  // return value
@@ -241,6 +250,68 @@ SM_POLL (Debug_WaitForWriteHostValue)
 	DebugPrintf("...Register[%d]= %d  (0x%X)" CRLF, index, value, value);
 	return &Debug_Idle;
 }
+// =================================================================
+SM_POLL (Debug_PromptMotorCommand)
+{
+	if (!DebugGetChar (DebugRcvBuf))
+		return 0;
+	DebugDeviceIndex = DebugPromptInteger - 1;
+	MotorSM * sm = DebugMotorSMs[DebugDeviceIndex];
+	DebugPrintf ("%c %s motor: ", DebugRcvBuf[0], sm->Motor.UserName);
+	const char * text;
+	SM_Msg * msg;
+
+	switch (toupper (DebugRcvBuf[0]))
+	{
+		case 'I':  // Initialize motor driver
+			msg = &sm->SMM_Initialize;
+			text = "Initializing motor driver";
+			break;
+		case 'H':  // home motor
+			msg = &sm->SMM_FindHome;
+			text = "Homing motor";
+			break;
+		case 'M':  // move motor to requested position
+			return DebugPromptForInteger ("Enter desired position", LONG_MIN, LONG_MAX, &Debug_PromptMotorMove);
+		case 'Z':  // mark current position as zero
+			msg = &sm->SMM_MarkZero;
+			text = "Marking current position as zero";
+			break;
+		case 'A':  // Move relative
+			return DebugPromptForInteger ("Enter desired distance", LONG_MIN, LONG_MAX, &Debug_PromptMotorMoveRel);
+		case 'B':  // Stop motor
+			msg = &sm->SMM_Stop;
+			sm->SMM_Stop.Param1 = 1;
+			text = "Stopping motor";
+			break;
+		case 'E':  // Enable
+			msg = &sm->SMM_HoldEnable;
+			sm->SMM_HoldEnable.Param1 = 1;
+			text = "Enabling motor";
+			break;
+		case 'D':  // Disable
+			msg = &sm->SMM_HoldEnable;
+			sm->SMM_HoldEnable.Param1 = 0;
+			text = "Disabling motor";
+			break;
+		default:
+			DebugPrint ("INVALID command" CRLF);
+			return &Debug_Idle;
+	}  // end switch
+	return DebugSendCommand (msg, text, 0);
+}
+// =================================================================
+SM_POLL (Debug_PromptMotorMove)
+{
+	DebugMotorSMs[DebugDeviceIndex]->SMM_MoveTo.Param1 = DebugPromptInteger;
+	return DebugSendCommand (&DebugMotorSMs[DebugDeviceIndex]->SMM_MoveTo, "Moving motor", 0);
+}
+// =================================================================
+SM_POLL (Debug_PromptMotorMoveRel)
+{
+	DebugMotorSMs[DebugDeviceIndex]->SMM_MoveRel.Param1 = DebugPromptInteger;
+	return DebugSendCommand (&DebugMotorSMs[DebugDeviceIndex]->SMM_MoveRel, "Moving motor relative", 0);
+}
 //================================================================
 SM_POLL (Debug_PowerUp)
 {
@@ -265,20 +336,35 @@ SM_POLL (Debug_Idle)
 			break;
 
 		case 'R':  // read Host register --------------------------------------------------------
-			return DebugPromptForInteger("Enter reg index", 0, RegistersSize - sizeof(uint32_t),
+			return DebugPromptForInteger("Enter register index", 0, RegistersSize - sizeof(uint32_t),
 			        &Debug_WaitForReadHostIndex);
 
 		case 'W':  // write Host register --------------------------------------------------------
-			return DebugPromptForInteger("Enter reg index", 0, RegistersSize - sizeof(uint32_t),
+			return DebugPromptForInteger("Enter register index", 0, RegistersSize - sizeof(uint32_t),
 			        &Debug_WaitForWriteHostIndex);
+
+		case 'M':  // Motor control
+			return DebugPromptForIndex (1, 8, &Debug_PromptMotorCommand);
 
 		default:
 			DebugPrint(CRLF
-			"   R  -Read  Host register" CRLF
-			"   W  -Write Host register" CRLF
-			"   E  -Print SM ErrorCodes" CRLF
-			"   H  -Print Host packets, toggle" CRLF
-			"   F  -Reset loop stats" CRLF);
+			"   R  - Read  Host register " CRLF
+			"   W  - Write Host register " CRLF
+			"   E  - Print SM ErrorCodes " CRLF
+			"   H  - Print Host packets, toggle " CRLF
+			"   F  - Reset loop statistics " CRLF
+			"   M  - Motor " CRLF
+			"        n = 1 - X axis " CRLF
+			"            2 - Y axis " CRLF
+			"            x = I - Initialize motor " CRLF
+			"                H - Find and mark home " CRLF
+			"                M - Move to position " CRLF
+			"                Z - Mark current position as zero " CRLF
+			"                A - Move relative " CRLF
+			"                S - Stop motor " CRLF
+			"                E - Enable motor " CRLF
+			"                D - Disable motor " CRLF
+			);
 	}
 }
 #endif
