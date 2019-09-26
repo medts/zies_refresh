@@ -17,6 +17,7 @@ SM_STATE(MotorSM_Stop)
 SM_STATE(MotorSM_HoldEnable)
 SM_STATE(MotorSM_ErrorOccured)
 
+
 #define sm (*(MotorSM *)theSM)
 
 // =================================================================
@@ -205,7 +206,7 @@ SM_POLL (MotorSM_Idle)
 	{
 			sm.SM_Status = static_cast<Error>(SM_Busy);
 			sm.HostRegs.ErrorCode = static_cast<Error>(SM_Busy);
-			sm.RequestedPosition = (sm.CurrentPosition + sm.SMM_MoveRel.Param1);
+			sm.RequestedPosition = (sm.Encoder.CurrentPosition() + sm.SMM_MoveRel.Param1);
 			sm.Timer.Start(sm.TimeoutDuration);
 			return &MotorSM_MoveRelative;
 	}
@@ -278,9 +279,9 @@ SM_POLL (MotorSM_Move)
 	if (sm.SM_Status == static_cast<Error>(SM_Busy))
 		return 0;
 	sm.HostRegs.Position = sm.GetCurrentPosition();
+	sm.SMM_MoveTo.Pending = false;
 	if (sm.SM_Status)
 	{
-		sm.SMM_MoveTo.Pending = false;
 		return &MotorSM_ErrorOccured;
 	}
 	return &MotorSM_Idle;

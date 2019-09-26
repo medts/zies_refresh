@@ -63,17 +63,21 @@
       <PathName>D:\Projects\Zies\zies_repo\zies\Generated_Code\Debug_UART1.c</PathName>
       <PathName>D:\Projects\Zies\zies_repo\zies\Generated_Code\HEARTBEAT_LED.c</PathName>
       <PathName>D:\Projects\Zies\zies_repo\zies\Generated_Code\M1_DIR.c</PathName>
+      <PathName>D:\Projects\Zies\zies_repo\zies\Generated_Code\M1_ENABLE.c</PathName>
       <PathName>D:\Projects\Zies\zies_repo\zies\Generated_Code\M1_HOME.c</PathName>
-      <PathName>D:\Projects\Zies\zies_repo\zies\Generated_Code\M1_MODE_0.c</PathName>
-      <PathName>D:\Projects\Zies\zies_repo\zies\Generated_Code\M1_MODE_1.c</PathName>
-      <PathName>D:\Projects\Zies\zies_repo\zies\Generated_Code\M1_MODE_2.c</PathName>
       <PathName>D:\Projects\Zies\zies_repo\zies\Generated_Code\M1_nFAULT.c</PathName>
       <PathName>D:\Projects\Zies\zies_repo\zies\Generated_Code\M2_DIR.c</PathName>
+      <PathName>D:\Projects\Zies\zies_repo\zies\Generated_Code\M2_ENABLE.c</PathName>
       <PathName>D:\Projects\Zies\zies_repo\zies\Generated_Code\M2_HOME.c</PathName>
-      <PathName>D:\Projects\Zies\zies_repo\zies\Generated_Code\M2_MODE_0.c</PathName>
-      <PathName>D:\Projects\Zies\zies_repo\zies\Generated_Code\M2_MODE_1.c</PathName>
-      <PathName>D:\Projects\Zies\zies_repo\zies\Generated_Code\M2_MODE_2.c</PathName>
       <PathName>D:\Projects\Zies\zies_repo\zies\Generated_Code\M2_nFAULT.c</PathName>
+      <PathName>D:\Projects\Zies\zies_repo\zies\Generated_Code\M3_DIR.c</PathName>
+      <PathName>D:\Projects\Zies\zies_repo\zies\Generated_Code\M3_ENABLE.c</PathName>
+      <PathName>D:\Projects\Zies\zies_repo\zies\Generated_Code\M3_HOME.c</PathName>
+      <PathName>D:\Projects\Zies\zies_repo\zies\Generated_Code\M3_nFAULT.c</PathName>
+      <PathName>D:\Projects\Zies\zies_repo\zies\Generated_Code\M4_DIR.c</PathName>
+      <PathName>D:\Projects\Zies\zies_repo\zies\Generated_Code\M4_ENABLE.c</PathName>
+      <PathName>D:\Projects\Zies\zies_repo\zies\Generated_Code\M4_HOME.c</PathName>
+      <PathName>D:\Projects\Zies\zies_repo\zies\Generated_Code\M4_nFAULT.c</PathName>
       <PathName>D:\Projects\Zies\zies_repo\zies\Generated_Code\PE_LDD.c</PathName>
       <PathName>D:\Projects\Zies\zies_repo\zies\Generated_Code\UART0.c</PathName>
       <PathName>D:\Projects\Zies\zies_repo\zies\Project_Settings\Startup_Code\startup.c</PathName>
@@ -96,17 +100,21 @@
       <PathName>D:\Projects\Zies\zies_repo\zies\Generated_Code\IO_Map.h</PathName>
       <PathName>D:\Projects\Zies\zies_repo\zies\Generated_Code\Init_Config.h</PathName>
       <PathName>D:\Projects\Zies\zies_repo\zies\Generated_Code\M1_DIR.h</PathName>
+      <PathName>D:\Projects\Zies\zies_repo\zies\Generated_Code\M1_ENABLE.h</PathName>
       <PathName>D:\Projects\Zies\zies_repo\zies\Generated_Code\M1_HOME.h</PathName>
-      <PathName>D:\Projects\Zies\zies_repo\zies\Generated_Code\M1_MODE_0.h</PathName>
-      <PathName>D:\Projects\Zies\zies_repo\zies\Generated_Code\M1_MODE_1.h</PathName>
-      <PathName>D:\Projects\Zies\zies_repo\zies\Generated_Code\M1_MODE_2.h</PathName>
       <PathName>D:\Projects\Zies\zies_repo\zies\Generated_Code\M1_nFAULT.h</PathName>
       <PathName>D:\Projects\Zies\zies_repo\zies\Generated_Code\M2_DIR.h</PathName>
+      <PathName>D:\Projects\Zies\zies_repo\zies\Generated_Code\M2_ENABLE.h</PathName>
       <PathName>D:\Projects\Zies\zies_repo\zies\Generated_Code\M2_HOME.h</PathName>
-      <PathName>D:\Projects\Zies\zies_repo\zies\Generated_Code\M2_MODE_0.h</PathName>
-      <PathName>D:\Projects\Zies\zies_repo\zies\Generated_Code\M2_MODE_1.h</PathName>
-      <PathName>D:\Projects\Zies\zies_repo\zies\Generated_Code\M2_MODE_2.h</PathName>
       <PathName>D:\Projects\Zies\zies_repo\zies\Generated_Code\M2_nFAULT.h</PathName>
+      <PathName>D:\Projects\Zies\zies_repo\zies\Generated_Code\M3_DIR.h</PathName>
+      <PathName>D:\Projects\Zies\zies_repo\zies\Generated_Code\M3_ENABLE.h</PathName>
+      <PathName>D:\Projects\Zies\zies_repo\zies\Generated_Code\M3_HOME.h</PathName>
+      <PathName>D:\Projects\Zies\zies_repo\zies\Generated_Code\M3_nFAULT.h</PathName>
+      <PathName>D:\Projects\Zies\zies_repo\zies\Generated_Code\M4_DIR.h</PathName>
+      <PathName>D:\Projects\Zies\zies_repo\zies\Generated_Code\M4_ENABLE.h</PathName>
+      <PathName>D:\Projects\Zies\zies_repo\zies\Generated_Code\M4_HOME.h</PathName>
+      <PathName>D:\Projects\Zies\zies_repo\zies\Generated_Code\M4_nFAULT.h</PathName>
       <PathName>D:\Projects\Zies\zies_repo\zies\Generated_Code\PE_Const.h</PathName>
       <PathName>D:\Projects\Zies\zies_repo\zies\Generated_Code\PE_Error.h</PathName>
       <PathName>D:\Projects\Zies\zies_repo\zies\Generated_Code\PE_LDD.h</PathName>

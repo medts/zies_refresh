@@ -9,6 +9,7 @@
 typedef void (*Step_Func) (uint32_t, float);
 typedef void (*Direction_Func) (bool);
 typedef void (*DrvEnable_Func) (bool);
+typedef void (*Stop_Func) (void);
 typedef bool (*IsFault_Func) (void);
 typedef bool (*IsSteppingDone_Func) (void);
 
@@ -36,6 +37,7 @@ class MotorDrv8825
 		Step_Func StepFunc;
 		Direction_Func DirFunc;
 		DrvEnable_Func DrvEnabFunc;
+		Stop_Func StopFunc;
 		IsFault_Func IsFault;
 		IsSteppingDone_Func IsSteppingDone;
 		MotorEncoder & Encoder;
@@ -44,7 +46,7 @@ class MotorDrv8825
 		TimeoutTimer DelayTimer;
 
 		MotorDrv8825 ( const char * theName, uint8_t theUserNum,
-				Step_Func theStepFunc, Direction_Func theDirFunc, DrvEnable_Func theEnableFunc,
+				Step_Func theStepFunc, Direction_Func theDirFunc, DrvEnable_Func theEnableFunc,Stop_Func theStopFunc,
 				IsFault_Func theIsFaultFunc, IsSteppingDone_Func theIsSteppingDone, MotorEncoder & theEncoder);
 		void SetParameters ( const MotorRegisters & theHostRegs );
 		Error Initialize ( const TimeoutTimer & theTimer );

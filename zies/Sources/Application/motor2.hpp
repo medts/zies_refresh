@@ -14,9 +14,5 @@ class MotorSM_Motor2 : public MotorSM
 };
 // =================================================================
 extern MotorSM_Motor2 gSM_Motor2;
-extern bool Motor2IsHome ();
-extern void M2_Direction(bool theDirection);
-extern void M2_Enable(bool theEnable);
-extern bool Is_M2_Fault();
 
-#endif /* MOTOR1_HPP_ */
+#endif /* MOTOR2_HPP_ */

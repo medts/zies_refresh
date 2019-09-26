@@ -27,12 +27,21 @@ void FTM0_Init (void);
 void FTM0_SendSteps ( uint32_t steps, float freqinHz );
 void FTM0_StopPWM (void);
 bool FTM0_IsSteppingDone (void);
-void M1SetMode(DrvStepSize stepsize);
 
 void FTM3_Init (void);
 void FTM3_SendSteps ( uint32_t steps, float freqinHz );
 void FTM3_StopPWM (void);
 bool FTM3_IsSteppingDone (void);
-void M2SetMode(DrvStepSize stepsize);
+
+void FTM1_Init (void);
+void FTM1_SendSteps ( uint32_t steps, float freqinHz );
+void FTM1_StopPWM (void);
+bool FTM1_IsSteppingDone (void);
+
+void FTM2_Init (void);
+void FTM2_SendSteps ( uint32_t steps, float freqinHz );
+void FTM2_StopPWM (void);
+bool FTM2_IsSteppingDone (void);
+
 
 #endif /* SOURCES_PWM_DRV_H_ */

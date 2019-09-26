@@ -1,58 +1,60 @@
-#include "motor2.hpp"
+#include "motor4.hpp"
+#include "motor_encoder.hpp"
+
 extern "C"
 {
-#include "M2_HOME.h"
-#include "M2_DIR.h"
-#include "M2_nFAULT.h"
-#include "M1_ENABLE.h"
+#include "M4_HOME.h"
+#include "M4_DIR.h"
+#include "M4_nFAULT.h"
+#include "M4_ENABLE.h"
 #include "pwm_drv.h"
 } // end extern "C"
+
 // =================================================================
-bool Motor2_IsHome ()
+bool Motor4_IsHome ()
 {
-	return M2_HOME_GetVal(0);	// true = sensor is active
+	return M4_HOME_GetVal(0);	// true = sensor is active
 }
-void Motor2_SetDirection ( bool theDirection )
+void Motor4_SetDirection ( bool theDirection )
 {
 	if (theDirection == Forward)
-		M2_DIR_PutVal(NULL, 1);
+		M4_DIR_PutVal(NULL, 1);
 	else
-		M2_DIR_PutVal(NULL, 0);
+		M4_DIR_PutVal(NULL, 0);
 }
 
-void Motor2_Enable ( bool theEnable )
+void Motor4_Enable ( bool theEnable )
 {
 	if (theEnable == EnableMotor)
-		M2_ENABLE_PutVal(NULL, 1);
+		M4_ENABLE_PutVal(NULL, 1);
 	else
-		M2_ENABLE_PutVal(NULL, 0);
+		M4_ENABLE_PutVal(NULL, 0);
 }
 
-void Motor2_Stop (void)
+void Motor4_Stop (void)
 {
-	FTM3_StopPWM();
+	FTM2_StopPWM();
 }
 
-bool Motor2_IsFault ()
+bool Motor4_IsFault (void)
 {
-	return !M2_nFAULT_GetVal(0); //If low M2 is at fault
+	return !M4_nFAULT_GetVal(0); //If low M1 is at fault
 }
 
-bool Motor2_IsSteppingDone()
+bool Motor4_IsSteppingDone(void)
 {
-	return FTM3_IsSteppingDone();
+	return FTM2_IsSteppingDone();
 }
 
-
-MotorDrv8825 Motor2("YAxis", static_cast<uint8_t>(Y_AXIS_MOTOR),
-		FTM3_SendSteps, Motor2_SetDirection, Motor2_Enable, Motor2_Stop, Motor2_IsFault, Motor2_IsSteppingDone, gMotor2Encoder);
-MotorSM_Motor2 gSM_Motor2(Motor2, (MotorRegisters&) gRegisters[Motor2Regs], Motor2_IsHome, 0, 10000.0);
+MotorDrv8825 Motor4("GAxis", static_cast<uint8_t>(G_AXIS_MOTOR),
+		FTM2_SendSteps, Motor4_SetDirection, Motor4_Enable, Motor4_Stop, Motor4_IsFault, Motor4_IsSteppingDone, gMotor4Encoder);
+MotorSM_Motor4 gSM_Motor4(Motor4, (MotorRegisters&) gRegisters[Motor4Regs], Motor4_IsHome, 0, 10000.0);
 
 // =================================================================
 // Setup default values for the motor, these can be altered by the host through registers write
-void MotorSM_Motor2::PowerUp ()
+void MotorSM_Motor4::PowerUp ()
 {
-	HostRegs.HomeDirection = static_cast<uint32_t>(Forward);
+	HostRegs.HomeDirection = static_cast<uint32_t>(Reverse);
 	HostRegs.InvertedDirection = 0;
 	HostRegs.MotorFullStepsPerRev = 200;
 	HostRegs.EncoderTicksPerRev = 100;

@@ -99,11 +99,13 @@ enum RegisterIds
 	MonitorVoltageBitMap = 20, // bitmask of measurements that are out of limits
 	MonitorVoltageMeasurements = 24, // System monitor voltages [0..31] 128 bytes long
 	UART0Regs = 152, // Serial Comm Registers, 1048 bytes long with 512 Bytes each for TX & Rx buffers
-	Motor1Regs = 1200, // Motor registers, 192 bytes long
-	Motor2Regs = 1392, // Motor registers, 192 bytes long
-	// Motor 1 registers
+	// Motor registers, 192 bytes long
+	Motor1Regs = 1200,
+	Motor2Regs = 1392,
+	Motor3Regs = 1584,
+	Motor4Regs = 1776,
 	//
-	LastRegisterAddress = 1584,
+	LastRegisterAddress = 1968,
 	RegistersSize = 8192
 };
 //================================================================

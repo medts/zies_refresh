@@ -7,7 +7,7 @@
 **     Version     : Component 01.033, Driver 01.03, CPU db: 3.00.000
 **     Repository  : Kinetis
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2019-09-04, 15:49, # CodeGen: 7
+**     Date/Time   : 2019-09-26, 19:58, # CodeGen: 10
 **     Abstract    :
 **         The HAL BitIO component provides a low level API for unified
 **         access to general purpose digital input/output pins across
@@ -17,7 +17,7 @@
 **         portable to various microprocessors.
 **     Settings    :
 **          Component name                                 : M2_HOME
-**          Pin for I/O                                    : CMP0_IN0/PTC6/LLWU_P10/SPI0_SOUT/PDB0_EXTRG/I2S0_RX_BCLK/FBa_AD9/I2S0_MCLK
+**          Pin for I/O                                    : PTB17/SPI1_SIN/UART0_TX/FTM_CLKIN1/FBa_AD16/EWM_OUT_b
 **          Direction                                      : Input
 **          Initialization                                 : 
 **            Init. direction                              : Input
@@ -98,7 +98,7 @@ extern "C" {
 
 
 /*! Peripheral base address of a device allocated by the component. This constant can be used directly in PDD macros. */
-#define M2_HOME_PRPH_BASE_ADDRESS  0x400FF080U
+#define M2_HOME_PRPH_BASE_ADDRESS  0x400FF040U
   
 /*! Device data structure pointer used when auto initialization property is enabled. This constant can be passed as a first parameter to all component's methods. */
 #define M2_HOME_DeviceData  ((LDD_TDeviceData *)PE_LDD_GetDeviceStructure(PE_LDD_COMPONENT_M2_HOME_ID))
@@ -108,9 +108,9 @@ extern "C" {
 #define M2_HOME_GetVal_METHOD_ENABLED  /*!< GetVal method of the component M2_HOME is enabled (generated) */
 
 /* Definition of implementation constants */
-#define M2_HOME_MODULE_BASE_ADDRESS PTC_BASE_PTR /*!< Name of macro used as the base address */
-#define M2_HOME_PORTCONTROL_BASE_ADDRESS PORTC_BASE_PTR /*!< Name of macro used as the base address */
-#define M2_HOME_PORT_MASK 0x40U        /*!< Mask of the allocated pin from the port */
+#define M2_HOME_MODULE_BASE_ADDRESS PTB_BASE_PTR /*!< Name of macro used as the base address */
+#define M2_HOME_PORTCONTROL_BASE_ADDRESS PORTB_BASE_PTR /*!< Name of macro used as the base address */
+#define M2_HOME_PORT_MASK 0x00020000U  /*!< Mask of the allocated pin from the port */
 
 
 

@@ -6,7 +6,7 @@
 // =================================================================
 enum MotorUserIndex
 {
-	X_AXIS_MOTOR = 1, Y_AXIS_MOTOR = 2, Z_AXIS_MOTOR = 3, D_AXIS_MOTOR = 4
+	X_AXIS_MOTOR = 1, Y_AXIS_MOTOR = 2, Z_AXIS_MOTOR = 3, G_AXIS_MOTOR = 4
 };
 
 enum HomedStatus

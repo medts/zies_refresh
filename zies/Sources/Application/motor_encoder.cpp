@@ -9,6 +9,8 @@ extern "C"
 // global vars
 MotorEncoder_Simulated gMotor1Encoder;
 MotorEncoder_Simulated gMotor2Encoder;
+MotorEncoder_Simulated gMotor3Encoder;
+MotorEncoder_Simulated gMotor4Encoder;
 
 // =================================================================
 void MotorEncoder::SetConversionFactors (const MotorRegisters & theRegs)

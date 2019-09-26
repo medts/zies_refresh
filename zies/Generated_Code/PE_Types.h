@@ -6,7 +6,7 @@
 **     Component   : PE_Types
 **     Version     : Driver 01.01
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2019-06-20, 16:05, # CodeGen: 1
+**     Date/Time   : 2019-09-26, 20:22, # CodeGen: 11
 **     Abstract    :
 **         PE_Types.h - contains definitions of basic types,
 **         register access macros and hardware specific macros
@@ -208,18 +208,22 @@ typedef unsigned long int       uint32;
 #define PE_LDD_COMPONENT_ASerialLdd2_ID          0x01U
 #define PE_LDD_COMPONENT_HEARTBEAT_LED_ID        0x02U
 #define PE_LDD_COMPONENT_DBG_LED_ID              0x03U
-#define PE_LDD_COMPONENT_M1_DIR_ID               0x04U
-#define PE_LDD_COMPONENT_M2_DIR_ID               0x05U
-#define PE_LDD_COMPONENT_M1_MODE_0_ID            0x06U
-#define PE_LDD_COMPONENT_M1_MODE_1_ID            0x07U
-#define PE_LDD_COMPONENT_M1_MODE_2_ID            0x08U
-#define PE_LDD_COMPONENT_M2_MODE_0_ID            0x09U
-#define PE_LDD_COMPONENT_M2_MODE_1_ID            0x0AU
-#define PE_LDD_COMPONENT_M2_MODE_2_ID            0x0BU
-#define PE_LDD_COMPONENT_M1_nFAULT_ID            0x0CU
-#define PE_LDD_COMPONENT_M2_nFAULT_ID            0x0DU
-#define PE_LDD_COMPONENT_M1_HOME_ID              0x0EU
-#define PE_LDD_COMPONENT_M2_HOME_ID              0x0FU
+#define PE_LDD_COMPONENT_M1_HOME_ID              0x04U
+#define PE_LDD_COMPONENT_M1_ENABLE_ID            0x05U
+#define PE_LDD_COMPONENT_M1_DIR_ID               0x06U
+#define PE_LDD_COMPONENT_M1_nFAULT_ID            0x07U
+#define PE_LDD_COMPONENT_M2_nFAULT_ID            0x08U
+#define PE_LDD_COMPONENT_M2_DIR_ID               0x09U
+#define PE_LDD_COMPONENT_M2_HOME_ID              0x0AU
+#define PE_LDD_COMPONENT_M2_ENABLE_ID            0x0BU
+#define PE_LDD_COMPONENT_M3_HOME_ID              0x0CU
+#define PE_LDD_COMPONENT_M3_ENABLE_ID            0x0DU
+#define PE_LDD_COMPONENT_M3_DIR_ID               0x0EU
+#define PE_LDD_COMPONENT_M3_nFAULT_ID            0x0FU
+#define PE_LDD_COMPONENT_M4_HOME_ID              0x10U
+#define PE_LDD_COMPONENT_M4_ENABLE_ID            0x11U
+#define PE_LDD_COMPONENT_M4_DIR_ID               0x12U
+#define PE_LDD_COMPONENT_M4_nFAULT_ID            0x13U
 
 /*
 ** ===================================================================

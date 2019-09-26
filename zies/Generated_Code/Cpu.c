@@ -8,7 +8,7 @@
 **     Repository  : Kinetis
 **     Datasheet   : K22P121M120SF7RM, Rev. 1, March 24, 2014
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2019-09-17, 11:03, # CodeGen: 8
+**     Date/Time   : 2019-09-26, 20:22, # CodeGen: 11
 **     Abstract    :
 **
 **     Settings    :
@@ -131,30 +131,34 @@ void Components_Init(void)
   (void)HEARTBEAT_LED_Init(NULL);
   /* ### BitIO_LDD "DBG_LED" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
   (void)DBG_LED_Init(NULL);
+  /* ### BitIO_LDD "M1_HOME" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
+  (void)M1_HOME_Init(NULL);
   /* ### BitIO_LDD "M1_DIR" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
   (void)M1_DIR_Init(NULL);
-  /* ### BitIO_LDD "M2_DIR" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
-  (void)M2_DIR_Init(NULL);
-  /* ### BitIO_LDD "M1_MODE_0" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
-  (void)M1_MODE_0_Init(NULL);
-  /* ### BitIO_LDD "M1_MODE_1" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
-  (void)M1_MODE_1_Init(NULL);
-  /* ### BitIO_LDD "M1_MODE_2" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
-  (void)M1_MODE_2_Init(NULL);
-  /* ### BitIO_LDD "M2_MODE_0" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
-  (void)M2_MODE_0_Init(NULL);
-  /* ### BitIO_LDD "M2_MODE_1" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
-  (void)M2_MODE_1_Init(NULL);
-  /* ### BitIO_LDD "M2_MODE_2" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
-  (void)M2_MODE_2_Init(NULL);
   /* ### BitIO_LDD "M1_nFAULT" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
   (void)M1_nFAULT_Init(NULL);
   /* ### BitIO_LDD "M2_nFAULT" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
   (void)M2_nFAULT_Init(NULL);
-  /* ### BitIO_LDD "M1_HOME" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
-  (void)M1_HOME_Init(NULL);
+  /* ### BitIO_LDD "M2_DIR" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
+  (void)M2_DIR_Init(NULL);
   /* ### BitIO_LDD "M2_HOME" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
   (void)M2_HOME_Init(NULL);
+  /* ### BitIO_LDD "M3_HOME" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
+  (void)M3_HOME_Init(NULL);
+  /* ### BitIO_LDD "M3_ENABLE" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
+  (void)M3_ENABLE_Init(NULL);
+  /* ### BitIO_LDD "M3_DIR" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
+  (void)M3_DIR_Init(NULL);
+  /* ### BitIO_LDD "M3_nFAULT" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
+  (void)M3_nFAULT_Init(NULL);
+  /* ### BitIO_LDD "M4_HOME" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
+  (void)M4_HOME_Init(NULL);
+  /* ### BitIO_LDD "M4_ENABLE" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
+  (void)M4_ENABLE_Init(NULL);
+  /* ### BitIO_LDD "M4_DIR" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
+  (void)M4_DIR_Init(NULL);
+  /* ### BitIO_LDD "M4_nFAULT" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
+  (void)M4_nFAULT_Init(NULL);
 }
 #endif /* CPU_COMPONENTS_INIT */
 

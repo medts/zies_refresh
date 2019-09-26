@@ -66,5 +66,7 @@ class MotorEncoder_Simulated : public MotorEncoder
 // =================================================================
 extern MotorEncoder_Simulated gMotor1Encoder;
 extern MotorEncoder_Simulated gMotor2Encoder;
+extern MotorEncoder_Simulated gMotor3Encoder;
+extern MotorEncoder_Simulated gMotor4Encoder;
 
 #endif /* MOTOR_ENCODER_HPP_ */

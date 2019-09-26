@@ -31,18 +31,22 @@
 - \subpage ASerialLdd2
 - \subpage HEARTBEAT_LED
 - \subpage DBG_LED
+- \subpage M1_HOME
+- \subpage M1_ENABLE
 - \subpage M1_DIR
-- \subpage M2_DIR
-- \subpage M1_MODE_0
-- \subpage M1_MODE_1
-- \subpage M1_MODE_2
-- \subpage M2_MODE_0
-- \subpage M2_MODE_1
-- \subpage M2_MODE_2
 - \subpage M1_nFAULT
 - \subpage M2_nFAULT
-- \subpage M1_HOME
+- \subpage M2_DIR
 - \subpage M2_HOME
+- \subpage M2_ENABLE
+- \subpage M3_HOME
+- \subpage M3_ENABLE
+- \subpage M3_DIR
+- \subpage M3_nFAULT
+- \subpage M4_HOME
+- \subpage M4_ENABLE
+- \subpage M4_DIR
+- \subpage M4_nFAULT
 
 */
 
@@ -80,18 +84,22 @@
 - \subpage ASerialLdd2
 - \subpage HEARTBEAT_LED
 - \subpage DBG_LED
+- \subpage M1_HOME
+- \subpage M1_ENABLE
 - \subpage M1_DIR
-- \subpage M2_DIR
-- \subpage M1_MODE_0
-- \subpage M1_MODE_1
-- \subpage M1_MODE_2
-- \subpage M2_MODE_0
-- \subpage M2_MODE_1
-- \subpage M2_MODE_2
 - \subpage M1_nFAULT
 - \subpage M2_nFAULT
-- \subpage M1_HOME
+- \subpage M2_DIR
 - \subpage M2_HOME
+- \subpage M2_ENABLE
+- \subpage M3_HOME
+- \subpage M3_ENABLE
+- \subpage M3_DIR
+- \subpage M3_nFAULT
+- \subpage M4_HOME
+- \subpage M4_ENABLE
+- \subpage M4_DIR
+- \subpage M4_nFAULT
 
 */
 

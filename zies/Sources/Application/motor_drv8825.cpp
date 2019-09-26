@@ -9,13 +9,14 @@ extern "C"
 
 // =================================================================
 MotorDrv8825::MotorDrv8825 ( const char * theName, uint8_t theUserNum,
-		Step_Func theStepFunc, Direction_Func theDirFunc, DrvEnable_Func theEnableFunc,
+		Step_Func theStepFunc, Direction_Func theDirFunc, DrvEnable_Func theEnableFunc,Stop_Func theStopFunc,
 		IsFault_Func theIsFaultFunc, IsSteppingDone_Func theIsSteppingDone, MotorEncoder & theEncoder) :
 		UserNum(theUserNum),
 		UserName(theName),
 		StepFunc(theStepFunc),
 		DirFunc(theDirFunc),
 		DrvEnabFunc(theEnableFunc),
+		StopFunc(theStopFunc),
 		IsFault(theIsFaultFunc),
 		IsSteppingDone(theIsSteppingDone),
 		Encoder(theEncoder),
@@ -108,7 +109,7 @@ float MotorDrv8825::MotorToUserSpeed ( uint32_t theMotorSpeed )
 // =================================================================
 Error MotorDrv8825::Initialize ( const TimeoutTimer & theTimer )
 {
-	Error error;
+	Error error = static_cast<Error>(NoError);
 	switch (StateNum)
 	{
 		case 0:
@@ -135,29 +136,58 @@ Error MotorDrv8825::FindHome ( BooleanFunc theIsHomeFunc, const TimeoutTimer & t
 	switch (StateNum)
 	{
 		case 0:
-			// Lets start with homing speed of max speed.
-			// Check if the home sensor is already occluded, if so run in opposite to homing direction, until sensor is not occluded
-			// If sensor is not occluded, run in homing direction till the sensor is occluded
-			error = run(MaxSpeed, OppositeDirection(HomeDirection), theTimer);
-			break;
-		case 1:
-			error = CheckStatus(theTimer);
-			break;
-		case 2:
-			DelayTimer.Start(pollingPeriod);
-			break;
-		case 3:
-			if (!DelayTimer.IsTimedOut()) error = static_cast<Error>(SM_Busy);
-			break;
-		case 4:
-			if (!(theIsHomeFunc)())
+			if (theIsHomeFunc())// if Not Homed
 			{
-				StateNum = 5;
+				StateNum = 4;
+				error = static_cast<Error>(SM_Busy);
 				break;
 			}
 			break;
+		case 1:
+			error = move(10, OppositeDirection(HomeDirection), theTimer);
+			break;
+		case 2:
+			if(!(theIsHomeFunc()))
+			{
+				StateNum = 1;
+				error = static_cast<Error>(SM_Busy);
+				break;
+			}
+			else
+			{
+				error = move(1, HomeDirection, theTimer);
+			}
+			break;
+		case 3:
+			if(!(theIsHomeFunc()))
+			{
+				StateNum = 999;
+				break;
+			}
+			else
+			{
+				StateNum = 2;
+				error = static_cast<Error>(SM_Busy);
+				break;
+			}
+			break;
+		case 4:
+			error = move(450, HomeDirection, theTimer); //num_of_pulses = 450(mm) * 16;
+			break;
 		case 5:
-			error = move(1, HomeDirection, theTimer);
+			if(!(theIsHomeFunc()))
+			{
+				StopFunc();
+				StateNum = 1;							//if Homed
+				error = static_cast<Error>(SM_Busy);
+				break;
+			}
+			else
+			{
+				StateNum = 4;
+				error = static_cast<Error>(SM_Busy);	//Not homed
+				break;
+			}
 			break;
 		default:  // all states completed
 			StateNum = 0;
@@ -175,35 +205,33 @@ Error MotorDrv8825::FindMaxTravel ( BooleanFunc theIsMaxTravelFunc, const Timeou
 // =================================================================
 Error MotorDrv8825::MoveTo ( int32_t thePosition, const TimeoutTimer & theTimer )  // encoder position in ticks
 {
-	int32_t distance;
-	MotorDirection dir;
+	static int32_t distance;
+	static MotorDirection dir;
 	Error error = static_cast<Error>(NoError);  // a faulty home sensor will cause a TimeoutError
 
 	switch(StateNum)
 	{
-	  case 1:
+	  case 0:
 		distance = thePosition - Encoder.CurrentPosition();
 	    dir = (distance < 0) ? Reverse : Forward;
+	    move(abs(distance), dir, theTimer);
+	    break;
+
+	  case 1:
+	    if(!IsSteppingDone())
+	    	error = static_cast<Error>(SM_Busy);
+	    else
+	    	error = static_cast<Error>(NoError);
 	    break;
 
 	  case 2:
-	    move(distance, dir, theTimer);
-	    break;
-
-	  case 3:
-	    if(!IsSteppingDone())
-	    	error = static_cast<Error>(SM_Busy);
-	    break;
-
-	  case 4:
-	    Encoder.MotorMoved(UserToMotor*distance, dir);
+	    Encoder.MotorMoved(abs(distance), dir);
 	    break;
 
 	  default:
 		StateNum = 0;
 		return static_cast<Error>(NoError);
 	}
-
 	return ErrorCheck(error, theTimer);
 }
 // =================================================================
@@ -226,11 +254,11 @@ Error MotorDrv8825::move ( int32_t theDistance, MotorDirection theDirection, con
 	uint32_t frequency;
 
 	num_of_pulses = theDistance * static_cast<uint32_t>(UserToMotor); //converting mm to pulses
-	frequency = MaxSpeed * static_cast<uint32_t>(UserToMotor); //converting speed in mm/sec to frequency in pulses / sec
+	frequency = MaxSpeed; //converting speed in mm/sec to frequency in pulses / sec
 
 	DrvEnabFunc(true);
-	StepFunc(num_of_pulses, frequency);
 	DirFunc(theDirection);
+	StepFunc(num_of_pulses, frequency);
 	return NoError;
 }
 // =================================================================

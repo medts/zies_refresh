@@ -6,7 +6,7 @@
 **     Version     : Component 01.048, Driver 01.00, CPU db: 3.00.000
 **     Repository  : Kinetis
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2019-09-04, 15:49, # CodeGen: 7
+**     Date/Time   : 2019-09-26, 20:22, # CodeGen: 11
 **
 **     Copyright : 1997 - 2015 Freescale Semiconductor, Inc. 
 **     All Rights Reserved.
@@ -61,18 +61,22 @@
 #include "ASerialLdd2.h"
 #include "HEARTBEAT_LED.h"
 #include "DBG_LED.h"
+#include "M1_HOME.h"
+#include "M1_ENABLE.h"
 #include "M1_DIR.h"
-#include "M2_DIR.h"
-#include "M1_MODE_0.h"
-#include "M1_MODE_1.h"
-#include "M1_MODE_2.h"
-#include "M2_MODE_0.h"
-#include "M2_MODE_1.h"
-#include "M2_MODE_2.h"
 #include "M1_nFAULT.h"
 #include "M2_nFAULT.h"
-#include "M1_HOME.h"
+#include "M2_DIR.h"
 #include "M2_HOME.h"
+#include "M2_ENABLE.h"
+#include "M3_HOME.h"
+#include "M3_ENABLE.h"
+#include "M3_DIR.h"
+#include "M3_nFAULT.h"
+#include "M4_HOME.h"
+#include "M4_ENABLE.h"
+#include "M4_DIR.h"
+#include "M4_nFAULT.h"
 
 
 /*
