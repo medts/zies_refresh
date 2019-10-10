@@ -23,9 +23,9 @@ void Motor2_SetDirection ( bool theDirection )
 void Motor2_Enable ( bool theEnable )
 {
 	if (theEnable == EnableMotor)
-		M2_ENABLE_PutVal(NULL, 1);
-	else
 		M2_ENABLE_PutVal(NULL, 0);
+	else
+		M2_ENABLE_PutVal(NULL, 1);
 }
 
 void Motor2_Stop (void)
@@ -55,15 +55,15 @@ void MotorSM_Motor2::PowerUp ()
 	HostRegs.HomeDirection = static_cast<uint32_t>(Forward);
 	HostRegs.InvertedDirection = 0;
 	HostRegs.MotorFullStepsPerRev = 200;
-	HostRegs.EncoderTicksPerRev = 100;
-	HostRegs.UnitsPerRev = 100; // Depends on pulley diameter in mm.
+	HostRegs.EncoderTicksPerRev = 20;
+	HostRegs.UnitsPerRev = 20; // Depends on pulley diameter in mm.
 	HostRegs.GearheadRatio = 1;
-	HostRegs.StepSize = static_cast<uint32_t>(MicroSteps_8);
+	HostRegs.StepSize = static_cast<uint32_t>(MicroSteps_32);
 	HostRegs.Deadband = 2; // Basically pitch of pulley teethes in mm, this is the band which cannot be achieved
 	HostRegs.MaxMoveRetries = 3;
 	HostRegs.Acceleration = 100; // in mm/sec2
 	HostRegs.DeAcceleration = 100; // in mm/sec2
-	HostRegs.MinSpeed = 0; // in mm/sec
-	HostRegs.MaxSpeed = 100; // in mm/sec
+	HostRegs.MinSpeed = 2; // in mm/sec
+	HostRegs.MaxSpeed = 3; // in mm/sec
 }
 // =================================================================

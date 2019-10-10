@@ -133,13 +133,12 @@ void FTM3_StartPWM ( float freqInHz )
 	mod = (uint32_t) (SYS_CLOCK_FREQ_HZ / freqInHz); // 1pulse time period = 0.04us, 1MOD_Value = 1/(freq*timeperiod of 1 pulse)
 	duty = (uint32_t) (mod / 2); //duty cycle = 50%
 
+	/*enable write the CnV register*/
+	FTM3_MODE |= 0x05;
 	/*Initializing the modulo register (final value)*/
 	FTM3_MOD = mod;
 	/*Initializing CnV register value*/
 	FTM3_C4V = duty;
-
-	/*enable write the CnV register*/
-	FTM3_MODE |= 0x05;
 
 	FTM3_SC = 0x68; //PRESCALE = /1
 }
@@ -181,8 +180,8 @@ bool FTM3_IsSteppingDone (void)
 void FTM1_Init ()
 {
 	NVICIP59 = 0x50u; //set FTM3 interrupt priority
-	NVICICPR2 |= 1u << 8u; //clear the pending register of interrupt source 87(FTM3)
-	NVICISER2 |= 1u << 8u; //set the interrupt source of FTM3
+	NVICICPR1 |= 1u << 11u; //clear the pending register of interrupt source 59(FTM1)
+	NVICISER1 |= 1u << 11u; //set the interrupt source of FTM1
 
 	SIM_SCGC5  |= 1u << 9u; //Enable Port A clock
 	SIM_SCGC6 |= 1u << 25u; // Enable FTM1 clock gate;
@@ -211,13 +210,14 @@ void FTM1_StartPWM ( float freqInHz )
 	mod = (uint32_t) (SYS_CLOCK_FREQ_HZ / freqInHz); // 1pulse time period = 0.04us, 1MOD_Value = 1/(freq*timeperiod of 1 pulse)
 	duty = (uint32_t) (mod / 2); //duty cycle = 50%
 
+	/*enable write the CnV register*/
+	FTM1_MODE |= 1u << 2u;
 	/*Initializing the modulo register (final value)*/
 	FTM1_MOD = mod;
 	/*Initializing CnV register value*/
 	FTM1_C0V = duty;
-
-	/*enable write the CnV register*/
-	FTM1_MODE |= 0x05;
+	/*enable FTM*/
+	FTM1_MODE |= 3u;
 
 	FTM1_SC = 0x68; //PRESCALE = /1
 }
@@ -259,8 +259,8 @@ bool FTM1_IsSteppingDone (void)
 void FTM2_Init ()
 {
 	NVICIP60 = 0x50; //set FTM3 interrupt priority
-	NVICICPR2 |= 1 << 9; //clear the pending register of interrupt source 87(FTM3)
-	NVICISER2 |= 1 << 9; //set the interrupt source of FTM3
+	NVICICPR1 |= 1 << 12; //clear the pending register of interrupt source 60(FTM2)
+	NVICISER1 |= 1 << 12; //set the interrupt source of FTM2
 
 	SIM_SCGC5  |= 1u << 10u; //Enable Port B clock
 	SIM_SCGC6 |= 1u << 26u; // Enable FTM2 clock gate;
@@ -289,13 +289,12 @@ void FTM2_StartPWM ( float freqInHz )
 	mod = (uint32_t) (SYS_CLOCK_FREQ_HZ / freqInHz); // 1pulse time period = 0.04us, 1MOD_Value = 1/(freq*timeperiod of 1 pulse)
 	duty = (uint32_t) (mod / 2); //duty cycle = 50%
 
+	/*enable write the CnV register*/
+	FTM2_MODE |= 0x05;
 	/*Initializing the modulo register (final value)*/
 	FTM2_MOD = mod;
 	/*Initializing CnV register value*/
 	FTM2_C0V = duty;
-
-	/*enable write the CnV register*/
-	FTM2_MODE |= 0x05;
 
 	FTM2_SC = 0x68; //PRESCALE = /1
 }

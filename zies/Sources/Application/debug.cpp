@@ -13,6 +13,8 @@
 
 #include "motor1.hpp"
 #include "motor2.hpp"
+#include "motor3.hpp"
+#include "motor4.hpp"
 
 extern "C"
 {
@@ -49,7 +51,7 @@ int32_t DebugParam1;  // general purpose, SM var
 int32_t DebugParam2;  // general purpose, SM var
 int DebugDeviceIndex;
 
-MotorSM * DebugMotorSMs[] = { &gSM_Motor1, &gSM_Motor2 };
+MotorSM * DebugMotorSMs[] = { &gSM_Motor1, &gSM_Motor2, &gSM_Motor3, &gSM_Motor4 };
 
 
 // DebugPromptFor:

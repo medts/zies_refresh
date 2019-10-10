@@ -26,9 +26,9 @@ void Motor4_SetDirection ( bool theDirection )
 void Motor4_Enable ( bool theEnable )
 {
 	if (theEnable == EnableMotor)
-		M4_ENABLE_PutVal(NULL, 1);
-	else
 		M4_ENABLE_PutVal(NULL, 0);
+	else
+		M4_ENABLE_PutVal(NULL, 1);
 }
 
 void Motor4_Stop (void)
@@ -65,7 +65,7 @@ void MotorSM_Motor4::PowerUp ()
 	HostRegs.MaxMoveRetries = 3;
 	HostRegs.Acceleration = 100; // in mm/sec2
 	HostRegs.DeAcceleration = 100; // in mm/sec2
-	HostRegs.MinSpeed = 0; // in mm/sec
-	HostRegs.MaxSpeed = 100; // in mm/sec
+	HostRegs.MinSpeed = 5; // in mm/sec
+	HostRegs.MaxSpeed = 10; // in mm/sec
 }
 // =================================================================

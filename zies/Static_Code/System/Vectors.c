@@ -913,11 +913,10 @@ PE_ISR(Unhandled_ivINT_CMP1)
 
 /*
 ** ===================================================================
-**     Method      :  Unhandled_ivINT_FTM0 (component MK22FN512LH12)
+**     Method      :  FTM0_ISR (component MK22FN512LH12)
 **
 **     Description :
-**         This ISR services the unhandled ivINT_FTM0 interrupt.
-**         This method is internal. It is used by Processor Expert only.
+**         This ISR services the FTM0 interrupt.
 ** ===================================================================
 */
 PE_ISR(FTM0_ISR);
@@ -928,32 +927,30 @@ PE_ISR(FTM0_ISR)
 
 /*
 ** ===================================================================
-**     Method      :  Unhandled_ivINT_FTM1 (component MK22FN512LH12)
+**     Method      :  FTM1_ISR (component MK22FN512LH12)
 **
 **     Description :
-**         This ISR services the unhandled ivINT_FTM1 interrupt.
-**         This method is internal. It is used by Processor Expert only.
+**         This ISR services the FTM1 interrupt.
 ** ===================================================================
 */
-PE_ISR(Unhandled_ivINT_FTM1);
-PE_ISR(Unhandled_ivINT_FTM1)
+PE_ISR(FTM1_ISR);
+PE_ISR(FTM1_ISR)
 {
-  PE_DEBUGHALT();
+  FTM1_Interrupt();
 }
 
 /*
 ** ===================================================================
-**     Method      :  Unhandled_ivINT_FTM2 (component MK22FN512LH12)
+**     Method      :  FTM2_ISR (component MK22FN512LH12)
 **
 **     Description :
-**         This ISR services the unhandled ivINT_FTM2 interrupt.
-**         This method is internal. It is used by Processor Expert only.
+**         This ISR services the FTM2 interrupt.
 ** ===================================================================
 */
-PE_ISR(Unhandled_ivINT_FTM2);
-PE_ISR(Unhandled_ivINT_FTM2)
+PE_ISR(FTM2_ISR);
+PE_ISR(FTM2_ISR)
 {
-  PE_DEBUGHALT();
+  FTM2_Interrupt();
 }
 
 /*
@@ -1348,11 +1345,10 @@ PE_ISR(Unhandled_ivINT_Reserved86)
 
 /*
 ** ===================================================================
-**     Method      :  Unhandled_ivINT_FTM3 (component MK22FN512LH12)
+**     Method      :  FTM3_ISR (component MK22FN512LH12)
 **
 **     Description :
-**         This ISR services the unhandled ivINT_FTM3 interrupt.
-**         This method is internal. It is used by Processor Expert only.
+**         This ISR services the FTM3 interrupt.
 ** ===================================================================
 */
 PE_ISR(FTM3_ISR);

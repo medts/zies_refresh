@@ -127,6 +127,10 @@ void Components_Init(void)
   UART0_Init();
   /* ### Asynchro serial "Debug_UART1" init code ... */
   Debug_UART1_Init();
+  FTM0_Init();
+  FTM1_Init();
+  FTM2_Init();
+  FTM3_Init();
   /* ### BitIO_LDD "HEARTBEAT_LED" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
   (void)HEARTBEAT_LED_Init(NULL);
   /* ### BitIO_LDD "DBG_LED" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */

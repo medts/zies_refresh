@@ -20,7 +20,7 @@ void MotorEncoder::SetConversionFactors (const MotorRegisters & theRegs)
 	UserDirectionReversed = theRegs.EncoderTicksPerRev < 0;
 
 	UserToEncoder = fabs ((float) theRegs.EncoderTicksPerRev) / (float) theRegs.UnitsPerRev;
-	EncoderToUser = 1.0 / UserToEncoder;  // precompute, * is faster than /
+	EncoderToUser = 1.0 / UserToEncoder;  // pre-compute, * is faster than /
 	Modulus = (int32_t) ((float) (theRegs.UnitsPerRev * theRegs.GearheadRatio) * UserToEncoder);
 }
 // =================================================================

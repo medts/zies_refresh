@@ -886,7 +886,7 @@
     <Enabled v="Y" />
     <Properties>
       <Component_name v="M3_ENABLE" />
-      <Pin_for_I_O v="PTA4/LLWU_P3/FTM0_CH1/NMI_b/EZP_CS_b" />
+      <Pin_for_I_O v="PTA5/USB_CLKIN/FTM0_CH2/I2S0_TX_BCLK/JTAG_TRST_b" />
       <Direction v="Output" />
       <group name="Initialization">
         <Init__direction v="Output" />
@@ -918,7 +918,7 @@
     <Enabled v="Y" />
     <Properties>
       <Component_name v="M3_DIR" />
-      <Pin_for_I_O v="PTA5/USB_CLKIN/FTM0_CH2/I2S0_TX_BCLK/JTAG_TRST_b" />
+      <Pin_for_I_O v="PTA4/LLWU_P3/FTM0_CH1/NMI_b/EZP_CS_b" />
       <Direction v="Output" />
       <group name="Initialization">
         <Init__direction v="Output" />
