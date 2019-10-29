@@ -57,15 +57,15 @@ void MotorSM_Motor4::PowerUp ()
 	HostRegs.HomeDirection = static_cast<uint32_t>(Reverse);
 	HostRegs.InvertedDirection = 0;
 	HostRegs.MotorFullStepsPerRev = 200;
-	HostRegs.EncoderTicksPerRev = 100;
-	HostRegs.UnitsPerRev = 100; // Depends on pulley diameter in mm.
+	HostRegs.EncoderTicksPerRev = 20;
+	HostRegs.UnitsPerRev = 20; // Depends on pulley diameter in mm.
 	HostRegs.GearheadRatio = 1;
-	HostRegs.StepSize = static_cast<uint32_t>(MicroSteps_8);
+	HostRegs.StepSize = static_cast<uint32_t>(MicroSteps_32);
 	HostRegs.Deadband = 2; // Basically pitch of pulley teethes in mm, this is the band which cannot be achieved
 	HostRegs.MaxMoveRetries = 3;
 	HostRegs.Acceleration = 100; // in mm/sec2
 	HostRegs.DeAcceleration = 100; // in mm/sec2
-	HostRegs.MinSpeed = 5; // in mm/sec
-	HostRegs.MaxSpeed = 10; // in mm/sec
+	HostRegs.MinSpeed = 10; // in mm/sec
+	HostRegs.MaxSpeed = 100; // in mm/sec
 }
 // =================================================================

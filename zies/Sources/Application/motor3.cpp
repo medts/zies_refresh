@@ -65,7 +65,7 @@ void MotorSM_Motor3::PowerUp ()
 	HostRegs.MaxMoveRetries = 3;
 	HostRegs.Acceleration = 100; // in mm/sec2
 	HostRegs.DeAcceleration = 100; // in mm/sec2
-	HostRegs.MinSpeed = 5; // in mm/sec
-	HostRegs.MaxSpeed = 10; // in mm/sec
+	HostRegs.MinSpeed = 10; // in mm/sec
+	HostRegs.MaxSpeed = 100; // in mm/sec
 }
 // =================================================================

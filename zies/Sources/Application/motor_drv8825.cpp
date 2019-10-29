@@ -7,6 +7,8 @@ extern "C"
 {
 }
 
+#define PI  3.142
+
 // =================================================================
 MotorDrv8825::MotorDrv8825 ( const char * theName, uint8_t theUserNum,
 		Step_Func theStepFunc, Direction_Func theDirFunc, DrvEnable_Func theEnableFunc,Stop_Func theStopFunc,
@@ -79,7 +81,7 @@ Error MotorDrv8825::ErrorCheck ( Error theError, const TimeoutTimer & theTimer )
 void MotorDrv8825::SetParameters ( const MotorRegisters & theHostRegs )
 {
 	StepSize = theHostRegs.StepSize;
-	UserToMotor = (float) theHostRegs.GearheadRatio * (float) theHostRegs.MotorFullStepsPerRev * StepSize/ (float) theHostRegs.UnitsPerRev;
+	UserToMotor = (float) theHostRegs.GearheadRatio * (float) theHostRegs.MotorFullStepsPerRev * StepSize/ ((float) theHostRegs.UnitsPerRev * PI);
 	MotorToUser = 1.0 / UserToMotor;
 	Deadband = theHostRegs.Deadband;
 	MaxMoveRetries = theHostRegs.MaxMoveRetries;
@@ -253,11 +255,14 @@ Error MotorDrv8825::move ( int32_t theDistance, MotorDirection theDirection, con
 	uint32_t num_of_pulses;
 	uint32_t frequency;
 
-	num_of_pulses = theDistance * static_cast<uint32_t>(UserToMotor); //converting mm to pulses
+	num_of_pulses = static_cast<uint32_t>(static_cast<float>(theDistance) * UserToMotor); //converting mm to pulses
 	frequency = MaxSpeed; //converting speed in mm/sec to frequency in pulses / sec
 
 	DrvEnabFunc(true);
-	DirFunc(theDirection);
+	if (InvertedDirection)
+		DirFunc(theDirection == Forward ? false : true);
+	else
+		DirFunc(theDirection == Forward ? true : false);
 	StepFunc(num_of_pulses, frequency);
 	return NoError;
 }

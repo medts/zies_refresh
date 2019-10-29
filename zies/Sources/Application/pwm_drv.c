@@ -6,7 +6,7 @@ struct FTM_Params stFTM3;
 struct FTM_Params stFTM1;
 struct FTM_Params stFTM2;
 
-#define SYS_CLOCK_FREQ_HZ   CPU_BUS_CLK_HZ
+#define SYS_CLOCK_FREQ_HZ   CPU_CORE_CLK_HZ
 
 volatile uint32_t FTM0_counter;
 volatile uint32_t FTM3_counter;
@@ -51,7 +51,7 @@ void FTM0_StartPWM ( float freqInHz )
 	uint32_t mod = 0;
 	uint32_t duty = 0;
 
-	mod = (uint32_t) (SYS_CLOCK_FREQ_HZ / freqInHz); // 1pulse time period = 0.04us, 1MOD_Value = 1/(freq * time period of 1 pulse,SYS_CLOCK_FREQ_HZ)
+	mod = (uint32_t) (SYS_CLOCK_FREQ_HZ / freqInHz); // 1pulse time period = 0.04us, 1MOD_Value = 1/(freq * time period of 1 pulse, SYS_CLOCK_FREQ_HZ)
 	duty = (uint32_t) (mod / 2); //duty cycle = 50%
 
 	/*enable write the CnV register*/
@@ -95,7 +95,7 @@ void FTM0_Interrupt ( void )
 
 bool FTM0_IsSteppingDone (void)
 {
-	return (FTM0_counter == 0);
+	return (FTM0_counter == stFTM0.pulses);
 }
 
 //-------------------------------------------------------------------------------------
@@ -172,7 +172,7 @@ void FTM3_Interrupt ( void )
 
 bool FTM3_IsSteppingDone (void)
 {
-	return (FTM3_counter == 0);
+	return (FTM3_counter == stFTM3.pulses);
 }
 
 //-------------------------------------------------------------------------------------
@@ -207,7 +207,7 @@ void FTM1_StartPWM ( float freqInHz )
 	uint32_t mod = 0;
 	uint32_t duty = 0;
 
-	mod = (uint32_t) (SYS_CLOCK_FREQ_HZ / freqInHz); // 1pulse time period = 0.04us, 1MOD_Value = 1/(freq*timeperiod of 1 pulse)
+	mod = (uint32_t) (SYS_CLOCK_FREQ_HZ / freqInHz); // 1pulse time period = 0.04us, 1MOD_Value = 1/(freq*timeperiod of 1 pulse,SYS_CLOCK_FREQ_HZ)
 	duty = (uint32_t) (mod / 2); //duty cycle = 50%
 
 	/*enable write the CnV register*/
@@ -251,7 +251,7 @@ void FTM1_Interrupt ( void )
 
 bool FTM1_IsSteppingDone (void)
 {
-	return (FTM1_counter == 0);
+	return (FTM1_counter == stFTM1.pulses);
 }
 
 //-------------------------------------------------------------------------------------
@@ -328,6 +328,6 @@ void FTM2_Interrupt ( void )
 
 bool FTM2_IsSteppingDone (void)
 {
-	return (FTM2_counter == 0);
+	return (FTM2_counter == stFTM2.pulses);
 }
 
